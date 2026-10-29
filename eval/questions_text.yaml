@@ -1,0 +1,41 @@
+# Hand-labelled questions. Numeric questions are generated from XBRL instead:
+#   filings-qa build-gold AAPL MSFT NVDA
+#
+# For each text question, read the relevant 10-K section yourself and fill in:
+#   expected_items:  which 10-K item(s) contain the answer (1 = Business, 1A = Risk
+#                    Factors, 7 = MD&A, 7A = Market Risk, 8 = Financial Statements)
+#   expected_points: short phrases a correct answer must mention, copied from the filing
+# Then grade the agent's answers in the review sheet (eval/human_grades.yaml).
+#
+# "unanswerable" questions test that the agent refuses instead of guessing.
+
+questions:
+  - id: text-AAPL-2024-supply-risk
+    type: text
+    question: What does Apple say about risks from its reliance on outsourcing partners in fiscal year 2024?
+    expected_items: ["1A"]
+    expected_points: []  # TODO: fill in from the filing
+
+  - id: text-MSFT-2024-segments
+    type: text
+    question: What operating segments does Microsoft report in its fiscal year 2024 10-K?
+    expected_items: ["1", "8"]
+    expected_points: []  # TODO
+
+  - id: text-NVDA-2025-export-controls
+    type: text
+    question: How does NVIDIA describe the impact of US export controls in its fiscal year 2025 10-K?
+    expected_items: ["1A", "7"]
+    expected_points: []  # TODO
+
+  - id: unans-AAPL-2030-revenue
+    type: unanswerable
+    question: What will Apple's revenue be in fiscal year 2030?
+
+  - id: unans-not-ingested
+    type: unanswerable
+    question: What was Ferrari's net income in 2024?
+
+  - id: unans-not-in-10k
+    type: unanswerable
+    question: What is Microsoft's share price today?
